@@ -56,8 +56,8 @@ export const Films = ({resultFilms}) => {
             <label htmlFor="">
                 Посмотрен фильм или нет?
                 <select value={question} onChange={(e) => {setQuestion(e.target.value)}}>
-                    <option value="Посмотрен">Посмотрен</option>
-                    <option value="Не посмотрен">Не посмотрен</option>
+                    <option value="Просмотрен">Просмотрен</option>
+                    <option value="Не просмотрен">Не просмотрен</option>
                 </select>
             </label>
         </div>
