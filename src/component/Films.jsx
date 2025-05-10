@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 export const Films = ({resultFilms}) => {
     const [text, setText] = useState('')
     const [genre, setGenre] = useState('Драма')
-    const [question, setQuestion] = useState('Посмотрен')
+    const [question, setQuestion] = useState('Просмотрен')
 
     function handleGenreChange(e){
         e.preventDefault()
@@ -20,7 +20,7 @@ export const Films = ({resultFilms}) => {
         resultFilms(newFilm)
         setText('')
         setGenre('Драма')
-        setQuestion('Посмотрен')
+        setQuestion('Просмотрен')
 
     }
 
