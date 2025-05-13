@@ -11,6 +11,7 @@ const books = [
 export const Books = () => {
     const[book, setBook] = useState(books)
     const[newBook, setNewBook] = useState('')
+    const [filter, setFilter] = useState('Все')
 
     function addNewBook(e) {
        e.preventDefault()
@@ -29,15 +30,29 @@ export const Books = () => {
        setBook((prev) => prev.filter(book => book.id !== id) )
    }
 
+   function bookCheckbox(id) {
+        setBook((book) => book.map((b) => b.id === id ? {...b,  composed: !b.composed} : b))
+   }
+
+   const  filterBook = book.filter((b) => {
+       return (
+           (filter === 'Все') ||
+           (filter === 'Прочитанные' && b.composed) ||
+           (filter === 'Непрочитанные' && !b.composed)
+       )
+   })
+
+
+
 
     return (
         <div>
             <h1>🦋Книжная лавка.</h1>
           <ul>
-              {book.map(book => {
+              {filterBook.map(book => {
                   return (
-
                           <li key={book.id}>
+                              <input type="checkbox" checked={book.composed} onChange={() => bookCheckbox(book.id)}/>
                               {book.name}, {book.autor}, {book.age}
                               <button onClick={() => deleteBooks(book.id)}>❌</button>
                           </li>
@@ -48,6 +63,11 @@ export const Books = () => {
             <div>
                 <input type="text" value={newBook} onChange={e => setNewBook(e.target.value)}/>
                 <button onClick={addNewBook}> ✅ Добавить!</button>
+            </div>
+            <div>
+                <button onClick={() =>  setFilter('Все')}>Все</button>
+                <button onClick={() =>  setFilter('Прочитанные')}>Прочитанные</button>
+                <button onClick={() =>  setFilter('Непрочитанные')}>Непрочитанные</button>
             </div>
         </div>
     );
